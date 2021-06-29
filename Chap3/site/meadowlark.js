@@ -5,9 +5,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set ('port', process.env.PORT || 3000);
 
-var fortunes = [
-    "result 1", "result 2", "and another", "and yet another one", "and the last one",
-]
+var fortunes = require('./lib/fortune.js')
 
 app.use(express.static(__dirname + '/public'));
 
@@ -16,8 +14,7 @@ app.get('/',function(req,res){
 });
 
 app.get('/about', function(req,res){
-    var yourResult = fortunes[Math.floor(Math.random()*fortunes.length)];
-    res.render('about', {fortune:yourResult});
+    res.render('about', {fortune: fortune.getFortune()});
 });
 
 //custom 404 page
