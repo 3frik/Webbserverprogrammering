@@ -9,28 +9,19 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set ('port', process.env.PORT || 3000);
-
-var fortunes = require('./lib/fortune.js')
-
-app.use(express.static(__dirname + '/public'));
-
+ 
 //app.get hanterar adressen
 app.get('/',function(req,res){
-    //Vad "main" ska fyllas med i {{{body}}}
+    //Vad layouten ska fyllas med i {{{body}}}
     res.render ('home');
 });
-
-app.get('/about', function(req,res){
-    res.render('about', {fortune: fortune.getFortune()});
-});
-
 //.use i stället för -get för att hantera konstiga fall
 app.use (function(req,res){
     //om inget sägs fyller express status som 200 (ok), men en 404 är en annan status, så man ska visa det
     res.status (404);
     res.render('404');
 });
-
+ 
 //en 505 status är en error status. Vi vill inte ha errors, så vi vill fixa det.
 app.use(function(err,req,res,next){
     //få info om vad som har hänt
@@ -38,8 +29,8 @@ app.use(function(err,req,res,next){
     res.status(500);
     res.render('500');
 });
-
+ 
 app.listen(app.get('port'), function(){
     console.log('express started on http//localhost:' + app.get('port') + '; press Ctrl+C to terminate')
 })
-
+ 
