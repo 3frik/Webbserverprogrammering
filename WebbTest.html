@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <header>
+    </header>
+    <body id= "mainBody" style="background-color: yellow;">
+        <h1 id="rubrik" style="color:red; font-size:54;">Viktyg nyhet!!!</h1>
+        <div id = "listBox">
+            Du påverkar din inlärning genom:
+            <ul id="list">
+                <li id="listElement1">Att vara <a href="https://sv.wikipedia.org/wiki/Nyfikenhet">nyfiken</a> och upptäcka på egen hand</li>
+                <li id="listElement2">Att vara <a href="https://sv.wikipedia.org/wiki/Kreativitet">kreativ</a> och skapa saker med din kunskap</li>
+                <li id="listElement3">Att ta <a href="https://svenska.se/tre/?sok=initiativ&pz=1">initiativet</a> och vänta inte att någon annan ordnar dig</li>
+            </ul>
+        </div>
+        <button id="knapp" onclick="andraFarg()">Ändra färg</button>
+        <script>
+            function andraFarg() {
+                var farger=["blue","red","black"];
+                document.getElementById("rubrik").style.color=farger[Math.floor(Math.random()*farger.length)];
+            }
+        </script>
+    </body>
+</html>
